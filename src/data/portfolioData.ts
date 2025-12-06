@@ -17,17 +17,17 @@ export const socialMediaLinks: SocialMedia[] = [
   {
     name: 'LinkedIn',
     icon: '/assets/icons/linkedin.png',
-    url: '#'
+    url: 'https://www.linkedin.com/in/aditya-rajadana-76651a30b/'
   },
   {
     name: 'GitHub',
     icon: '/assets/icons/github.png',
-    url: '#'
+    url: 'https://github.com/adityarajadn?tab=overview&from=2025-12-01&to=2025-12-06'
   },
   {
     name: 'Email',
     icon: '/assets/icons/mail.png',
-    url: 'mailto:contact@email.com'
+    url: 'mailto:adityarajadana06@email.com'
   }
 ];
 
