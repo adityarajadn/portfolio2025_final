@@ -4,10 +4,21 @@
  * Menampilkan menu navigasi dengan link ke PROJECTS, SKILLS, dan CONTACT
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navigation.css';
 
 const Navigation: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -16,7 +27,7 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <button onClick={() => scrollToSection('projects')} className="nav-link">
           PROJECTS

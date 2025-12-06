@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 import { projects } from '../data/portfolioData';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import './Projects.css';
 
 const Projects: React.FC = () => {
@@ -94,17 +95,26 @@ const Projects: React.FC = () => {
   };
 
   const currentProject = projects[currentIndex];
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { elementRef: infoRef, isVisible: infoVisible } = useScrollAnimation({ threshold: 0.3 });
+  const { elementRef: stackRef, isVisible: stackVisible } = useScrollAnimation({ threshold: 0.3 });
 
   return (
     <section id="projects" className="projects">
-      <div className="projects-header">
+      <div 
+        ref={headerRef as React.RefObject<HTMLDivElement>}
+        className={`projects-header ${headerVisible ? 'animate-in' : ''}`}
+      >
         <h2 className="projects-title">{currentProject.category} PROJECTS</h2>
         <p className="projects-counter">{currentIndex + 1} / {projects.length}</p>
       </div>
       
       <div className="projects-main-container">
         {/* Left Side - Project Info */}
-        <div className="project-info-container">
+        <div 
+          ref={infoRef as React.RefObject<HTMLDivElement>}
+          className={`project-info-container ${infoVisible ? 'slide-in-left' : ''}`}
+        >
           <h3 className="project-title">{currentProject.title}</h3>
           <p className="project-description">{currentProject.description}</p>
           <div className="project-tags">
@@ -126,7 +136,10 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Right Side - Image Stack */}
-        <div className="projects-stack-wrapper">
+        <div 
+          ref={stackRef as React.RefObject<HTMLDivElement>}
+          className={`projects-stack-wrapper ${stackVisible ? 'slide-in-right' : ''}`}
+        >
           <div className="projects-stack">
             {projects.map((project, index) => {
               const style = getCardStyle(index);
