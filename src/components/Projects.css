@@ -1,0 +1,246 @@
+/* Projects Section Styles - Split Layout with Image Stack */
+.projects {
+  padding: 6rem 2rem;
+  background: #0a0a0a;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.projects-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.projects-counter {
+  font-size: 1.2rem;
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+/* Main Container - Split Layout */
+.projects-main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left Side - Project Info */
+.project-info-container {
+  padding: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.project-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: white;
+}
+
+.project-description {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  background: #8b5cf6;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(139, 92, 246, 0.2);
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  background: rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+.icon-placeholder {
+  font-size: 1.5rem;
+}
+
+/* Right Side - Image Stack */
+.projects-stack-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projects-stack {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-image-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              opacity 0.3s ease,
+              box-shadow 0.3s ease;
+  cursor: grab;
+  user-select: none;
+}
+
+.project-image-card.top-card {
+  cursor: grab;
+}
+
+.project-image-card.top-card:active {
+  cursor: grabbing;
+}
+
+.project-image-card:hover {
+  box-shadow: 0 25px 70px rgba(139, 92, 246, 0.4);
+}
+
+.project-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.drag-hint {
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-weight: 500;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .projects-main-container {
+    gap: 3rem;
+  }
+
+  .projects-stack {
+    max-width: 450px;
+    height: 450px;
+  }
+
+  .project-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-title {
+    font-size: 2.5rem;
+  }
+
+  .projects-main-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .project-info-container {
+    padding: 1rem;
+    order: 2;
+  }
+
+  .projects-stack-wrapper {
+    order: 1;
+  }
+
+  .projects-stack {
+    max-width: 400px;
+    height: 400px;
+  }
+
+  .project-title {
+    font-size: 2rem;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-stack {
+    max-width: 100%;
+    height: 350px;
+  }
+
+  .project-image-card {
+    border-radius: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 1.8rem;
+  }
+
+  .project-info-container {
+    padding: 0.5rem;
+  }
+}
